@@ -7,7 +7,7 @@ import ResumenComponent from "./components/ResumenComponent"
 function App() {
 
   return (
-    <div className='bg-coffee-100 w-screen h-dvh p-5'>
+    <div className='bg-coffee-100 w-screen h-full p-5'>
       <header>
         <h1 className='text-3xl font-dosis font-semibold uppercase tracking-wider text-coffee-400 '>Contador Calorias</h1>
       </header>
