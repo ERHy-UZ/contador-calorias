@@ -20,7 +20,10 @@ export default {
       },
       fontFamily: {
         dosis: ['Dosis', 'sans-serif'],
-      }
+      },
+      screens: {
+        'tablet': '600px'
+      },
     },
   },
   plugins: [],
