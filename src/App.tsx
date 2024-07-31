@@ -9,7 +9,13 @@ import { ActivityReducer, initialState } from "./reducers/activity-reducer"
 function App() {
 
   const [state, dispatch] = useReducer(ActivityReducer, initialState)
-  const [isEdit, setEdit] = useState<ButtonType>({ boton1: false, boton2: false })
+  const [isEditOne, setEditOne] = useState(false)
+  const [isEditTwo, setEditTwo] = useState(false)
+
+  const handleEdit = ({boton1, boton2} : ButtonType) => {
+    setEditOne(boton1)
+    setEditTwo(boton2)
+  }
 
   useEffect(() => {
     localStorage.setItem('activities', JSON.stringify(state.activities))
@@ -25,13 +31,15 @@ function App() {
           nombre='Agregar'
           direccionOpen={<AgregarComponent state={state} dispatch={dispatch} />}
           direccionClosed={<></>}
-          isEdit={isEdit.boton1}
+          isEdit={isEditOne}
+          setEdit={setEditOne}
         />
         <BotonMain
           nombre='Datos'
-          direccionOpen={<DatosComponent state={state} setEdit={setEdit} dispatch={dispatch} />}
+          direccionOpen={<DatosComponent state={state} handleEdit={handleEdit} dispatch={dispatch} />}
           direccionClosed={<ResumenComponent />}
-          isEdit={isEdit.boton2}
+          isEdit={isEditTwo}
+          setEdit={setEditTwo}
         />
       </section>
     </div>
