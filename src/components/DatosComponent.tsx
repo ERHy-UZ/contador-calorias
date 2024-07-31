@@ -25,7 +25,10 @@ export default function DatosComponent({ state, setEdit, dispatch }: DatosCompon
 
   const handleDelete = (id: ActivityType['id']) => dispatch({ type: 'delete-activity', payload: { id } })
 
-  const handleDeleteAll = () => dispatch({ type: 'delete-all' })
+  const handleDeleteAll = () => {
+    setEdit({ boton1: false, boton2: false })
+    dispatch({ type: 'delete-all' })
+  }
 
   return (
     <div className='space-y-7 h-full overflow-y-auto p-10'>
