@@ -1,23 +1,31 @@
 import { motion } from "framer-motion"
-import { useState, ReactNode } from "react"
+import { useState, ReactNode, useEffect } from "react"
 
 type BotonMainProps = {
     nombre: string
     direccionOpen: ReactNode
     direccionClosed: ReactNode
-
+    isEdit: boolean
 }
 
-export default function BotonMain({ nombre, direccionOpen, direccionClosed }: BotonMainProps) {
+export default function BotonMain({ nombre, direccionOpen, direccionClosed, isEdit }: BotonMainProps) {
     const [isOpen, setOpen] = useState(false)
 
+    useEffect(() => {
+        if (isEdit === true) {
+            setOpen(true)
+        } else {
+            setOpen(false)
+        }
+    }, [isEdit])
+
     return (
-        <motion.button
+        <motion.div
             whileHover={{ scale: !isOpen ? 1.04 : 1 }}
             whileTap={{ scale: !isOpen ? 0.9 : 1 }}
-            onMouseLeave={() => setOpen(false)} onClick={() => setOpen(true)} className={`bg-coffee-200 ${isOpen ? 'h-[36rem]' : 'h-48'} lg:h-full w-11/12 ${isOpen ? 'lg:w-[80rem]' : 'lg:w-96'} rounded-2xl p-10 ${isOpen && 'cursor-default'} shadow-md`}
+            onMouseLeave={() => setOpen(false)} onClick={() => setOpen(true)} className={`bg-coffee-200 ${isOpen ? 'h-[36rem]' : 'h-48'} lg:h-full w-11/12 ${isOpen ? 'lg:w-[80rem]' : 'lg:w-96'} rounded-2xl p-10 ${isOpen ? 'cursor-default' : 'cursor-pointer'} shadow-md`}
         >
-            <div className='w-full h-full'>
+            <div className='flex flex-col justify-center items-center w-full h-full'>
                 <h1 className='font-dosis font-semibold text-4xl uppercase text-coffee-400'>{nombre}</h1>
                 <div className='my-10 w-full h-5/6'>
                     {isOpen ?
@@ -26,6 +34,6 @@ export default function BotonMain({ nombre, direccionOpen, direccionClosed }: Bo
                     }
                 </div>
             </div>
-        </motion.button>
+        </motion.div>
     )
 }

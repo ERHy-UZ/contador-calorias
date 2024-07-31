@@ -1,23 +1,35 @@
 import type { ActivityType } from "../types"
 import { motion } from "framer-motion"
-import { v4 as uuidv4 } from 'uuid'
-import { FormEvent, ChangeEvent, useState, Dispatch } from "react"
+import { v7 as uuidv7 } from 'uuid'
+import { FormEvent, ChangeEvent, useState, Dispatch, useEffect } from "react"
 import { categories } from "../data/categories"
-import { ActivityActions } from "../reducers/activity-reducer"
+import { ActivityActions, ActivityState } from "../reducers/activity-reducer"
 
 type AgregarComponentProps = {
+  state: ActivityState
   dispatch: Dispatch<ActivityActions>
 }
 
-const initialState : ActivityType = {
-  id: uuidv4(),
+const handleUUIDGenerator = () => {
+  return uuidv7()
+}
+
+const initialState: ActivityType = {
+  id: handleUUIDGenerator(),
   categoria: 1,
   nombre: '',
   calorias: ''
 }
 
-export default function AgregarComponent({ dispatch }: AgregarComponentProps) {
+export default function AgregarComponent({ state, dispatch }: AgregarComponentProps) {
   const [formElements, setFormElements] = useState(initialState)
+
+  useEffect(() => {
+    if (state.editId.length > 0) {
+      const actividad = state.activities.find(actv => actv.id === state.editId && actv)
+      setFormElements(actividad ? actividad : initialState)
+    }
+  }, [state.editId])
 
   const handleChange = (evt: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
     setFormElements({ ...formElements, [evt.target.id]: evt.target.id === 'categoria' ? +evt.target.value : evt.target.value })
@@ -26,7 +38,7 @@ export default function AgregarComponent({ dispatch }: AgregarComponentProps) {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
     dispatch({ type: 'save-activity', payload: { newActivity: formElements } })
-    setFormElements({...initialState, id: uuidv4()})
+    setFormElements({ ...initialState, id: handleUUIDGenerator() })
   }
 
   const handleValidacion = () => {

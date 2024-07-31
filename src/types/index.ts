@@ -9,3 +9,8 @@ export type ActivityType = {
     nombre: string
     calorias: string
 }
+
+export type ButtonType = {
+    boton1: boolean
+    boton2: boolean
+}
