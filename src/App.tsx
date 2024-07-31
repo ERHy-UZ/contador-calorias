@@ -26,7 +26,7 @@ function App() {
       <header>
         <h1 className='text-3xl font-dosis font-semibold uppercase tracking-wider text-coffee-400 '>Contador Calorias</h1>
       </header>
-      <section className='flex flex-col lg:flex-row justify-center items-center space-y-11 lg:space-y-0 lg:space-x-11 my-14 h-[45rem] w-full'>
+      <section className='flex flex-col lg:flex-row justify-center items-center space-y-11 lg:space-y-0 lg:space-x-11 my-14 h-[60rem] lg:h-[45rem] w-full'>
         <BotonMain
           nombre='Agregar'
           direccionOpen={<AgregarComponent state={state} dispatch={dispatch} />}
@@ -37,7 +37,7 @@ function App() {
         <BotonMain
           nombre='Datos'
           direccionOpen={<DatosComponent state={state} handleEdit={handleEdit} dispatch={dispatch} />}
-          direccionClosed={<ResumenComponent />}
+          direccionClosed={<ResumenComponent state={state} />}
           isEdit={isEditTwo}
           setEdit={setEditTwo}
         />

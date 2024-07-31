@@ -29,7 +29,7 @@ export default function BotonMain({ nombre, direccionOpen, direccionClosed, isEd
         <motion.div
             whileHover={{ scale: !isOpen ? 1.04 : 1 }}
             whileTap={{ scale: !isOpen ? 0.9 : 1 }}
-            onMouseLeave={handleMouseLeave} onClick={() => setOpen(true)} className={`bg-coffee-200 ${isOpen ? 'h-[36rem]' : 'h-48'} lg:h-full w-11/12 ${isOpen ? 'lg:w-[80rem]' : 'lg:w-96'} rounded-2xl p-10 ${isOpen ? 'cursor-default' : 'cursor-pointer'} shadow-md`}
+            onMouseLeave={handleMouseLeave} onClick={() => setOpen(true)} className={`bg-coffee-200 ${isOpen ? 'h-[36rem]' : 'h-72'} lg:h-full w-11/12 ${isOpen ? 'lg:w-[80rem]' : 'lg:w-96'} rounded-2xl p-10 ${isOpen ? 'cursor-default' : 'cursor-pointer'} shadow-md`}
         >
             <div className='flex flex-col justify-center items-center w-full h-full'>
                 <h1 className='font-dosis font-semibold text-4xl uppercase text-coffee-400'>{nombre}</h1>
