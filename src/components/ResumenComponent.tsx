@@ -13,12 +13,12 @@ export default function ResumenComponent({ state }: ResumenComponentProps) {
   return (
     <div className='max-lg:grid max-lg:grid-cols-2 lg:flex lg:flex-col max-lg:divide-x-2 lg:divide-y-2 divide-coffee-300 w-full h-full'>
       <motion.div className='flex flex-col justify-center items-center uppercase font-dosis w-full lg:py-20 text-green-700'>
-        <p className='text-5xl font-semibold'>{caloriesCosumed}</p>
-        <p className='text-xl font-semibold'>Cosumidas</p>
+        <p className='text-2xl lg:text-5xl font-semibold'>{caloriesCosumed}</p>
+        <p className='lg:text-xl font-semibold'>Consumidas</p>
       </motion.div>
       <motion.div className='flex flex-col justify-center items-center uppercase font-dosis w-full lg:py-20 text-orange-700'>
-        <p className='text-5xl font-semibold'>{caloriesBurned}</p>
-        <p className='text-xl font-semibold'>Quemadas</p>
+        <p className='text-2xl lg:text-5xl font-semibold'>{caloriesBurned}</p>
+        <p className='lg:text-xl font-semibold'>Quemadas</p>
       </motion.div>
     </div>
   )

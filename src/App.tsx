@@ -21,10 +21,14 @@ function App() {
     localStorage.setItem('activities', JSON.stringify(state.activities))
   }, [state.activities])
 
+  useEffect(() => {
+    localStorage.setItem('currentID', JSON.stringify(state.productId))
+  }, [state.productId])
+
   return (
     <div className='bg-coffee-100 w-screen h-full tablet:h-screen p-5'>
       <header>
-        <h1 className='text-3xl font-dosis font-semibold uppercase tracking-wider text-coffee-400 '>Contador Calorias</h1>
+        <h1 className='text-xl lg:text-3xl font-dosis font-semibold uppercase tracking-wider text-coffee-400 '>Contador Calorias</h1>
       </header>
       <section className='flex flex-col lg:flex-row justify-center items-center space-y-11 lg:space-y-0 lg:space-x-11 my-14 h-[60rem] lg:h-[45rem] w-full'>
         <BotonMain
