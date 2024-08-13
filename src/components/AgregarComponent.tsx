@@ -1,6 +1,6 @@
 import type { ActivityType } from "../types"
 import { motion } from "framer-motion"
-import { FormEvent, ChangeEvent, useState, Dispatch, useEffect } from "react"
+import { FormEvent, ChangeEvent, useState, Dispatch, useEffect, useMemo } from "react"
 import { categories } from "../data/categories"
 import { ActivityActions, ActivityState } from "../reducers/activity-reducer"
 
@@ -46,10 +46,10 @@ export default function AgregarComponent({ state, dispatch }: AgregarComponentPr
     setSubmit(true)
   }
 
-  const handleValidacion = () => {
+  const handleValidacion = useMemo(() => {
     const { nombre, calorias } = formElements
     return nombre.trim() !== '' && +calorias > 0 && +calorias < 10000
-  }
+  }, [formElements])
 
   return (
     <>
@@ -84,10 +84,10 @@ export default function AgregarComponent({ state, dispatch }: AgregarComponentPr
           />
         </div>
         <motion.input
-          whileTap={{ scale: handleValidacion() ? 0.9 : 1 }}
+          whileTap={{ scale: handleValidacion ? 0.9 : 1 }}
           type='submit'
           value={`Guardar ${categories[formElements.categoria - 1].name}`}
-          disabled={!handleValidacion()}
+          disabled={!handleValidacion}
           className='uppercase bg-coffee-400 text-white text-sm lg:text-xl font-dosis font-bold tracking-widest py-5 w-11/12 lg:w-9/12 enabled:cursor-pointer rounded-sm hover:bg-coffee-300 disabled:bg-coffee-500 disabled:text-gray-400'
         />
       </motion.form>
